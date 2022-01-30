@@ -1,0 +1,13 @@
+{{ define "main" }}
+{{ $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
+<h1>{{ .Title }}</h1>
+{{ range $pages.ByPublishDate.Reverse }}
+<p>
+    <h3><a class="title" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+    {{ partial "metadata.html" . }}
+    <div class="summary">
+        <p>{{ .Summary }}</p>
+    </div>
+</p>
+{{ end }}
+{{ end }}
